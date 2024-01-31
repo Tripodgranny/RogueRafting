@@ -1,0 +1,5 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Dev/MonoGame/RogueRafting/RogueRafting/Content/dust.png","C:/Dev/MonoGame/RogueRafting/RogueRafting/Content/bin/DesktopGL/dust.xnb","TextureProcessor","Texture2DContent",17963,12373,0.0733365
+"C:/Dev/MonoGame/RogueRafting/RogueRafting/Content/test1.png","C:/Dev/MonoGame/RogueRafting/RogueRafting/Content/bin/DesktopGL/test1.xnb","TextureProcessor","Texture2DContent",17831,4181,0.0050149
+"C:/Dev/MonoGame/RogueRafting/RogueRafting/Content/test2.png","C:/Dev/MonoGame/RogueRafting/RogueRafting/Content/bin/DesktopGL/test2.xnb","TextureProcessor","Texture2DContent",17842,4181,0.0043094
+"C:/Dev/MonoGame/RogueRafting/RogueRafting/Content/test3.png","C:/Dev/MonoGame/RogueRafting/RogueRafting/Content/bin/DesktopGL/test3.xnb","TextureProcessor","Texture2DContent",17835,4181,0.0048081
