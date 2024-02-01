@@ -52,7 +52,13 @@ namespace RogueRafting.Entities
             monobehaviors.Add(behavior);
         }
 
-        public static List<MonoBehavior> GetScripts() { return monobehaviors; }
+        public static void RemoveScript(MonoBehavior behavior)
+        {
+            monobehaviors.Remove(behavior);
+            Debug.WriteLine("Monobehaviors: " + monobehaviors);
+        }
+
+        public static List<MonoBehavior> GetAllScripts() { return monobehaviors; }
 
         //==========================================================================================
         // GET/SET METHODS
@@ -127,7 +133,6 @@ namespace RogueRafting.Entities
         /// <summary>
         /// Update all components attached to this game object
         /// </summary>
-        /// <param name="(GameTime gameTime)"></param>
         public void Update(GameTime gameTime)
         {
             foreach (Component comp in components)
@@ -146,6 +151,12 @@ namespace RogueRafting.Entities
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the list of all components attached to this game object
+        /// </summary>
+        /// <returns>List<Component></Component></returns>
+        public List<Component> GetComponentList() { return components; }
 
         /// <summary>
         /// Gets all components of type attached to this game object

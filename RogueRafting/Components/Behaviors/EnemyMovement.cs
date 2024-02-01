@@ -11,11 +11,14 @@ namespace RogueRafting.Components.Behaviors
 {
     public class EnemyMovement : MonoBehavior
     {
+        float i = 0;
 
         public override void Update(GameTime gameTime)
         {
+            i+=0.04f;
             var delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            gameObject.transform.Translate(delta * 20F, 0F);
+            float sin = (float)Math.Sin(i) * (delta * 80F);
+            gameObject.transform.Translate(delta * 20F, sin);
             gameObject.GetComponent<SpriteRenderer>().animationSpeed = 0.1F;
 
             Debug.WriteLine("EnemyMovement");

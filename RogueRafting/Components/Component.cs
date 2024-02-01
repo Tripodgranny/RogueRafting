@@ -15,7 +15,6 @@ namespace RogueRafting.Components
         /// </summary>
         public GameObject gameObject;
         public Transform transform;
-
         
         /// <summary>
         /// Abstract method used for starting a component.

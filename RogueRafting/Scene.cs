@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using RogueRafting.Components;
+using RogueRafting.Components.Behaviors;
 using RogueRafting.Entities;
 using RogueRafting.Scenes;
 using System;
@@ -19,27 +20,28 @@ namespace RogueRafting
         protected Camera camera;
         private bool isRunning = false;
         private static bool changingScene = false;
+        private static bool started = false;
 
         protected static List<GameObject> gameObjects = new List<GameObject>();
 
         public static readonly int LEVEL_EDITOR_SCENE = 0;
         public static readonly int TEST_SCENE = 1;
 
-        public Scene()
+        public static void Init()
         {
 
+            started = true;
+            Awake();
+            
         }
 
-        public void Init()
+        // Called after scene has loaded and every object is initialized
+        private static void Awake()
         {
-
-        }
-
-        public void Start()
-        {
-            foreach(GameObject go in gameObjects)
+            foreach (MonoBehavior script in GameObject.GetAllScripts())
             {
-                go.Start();
+                if (script.enabled)
+                    script.Awake();
             }
         }
 
@@ -48,7 +50,6 @@ namespace RogueRafting
             gameObjects.Add(go);
             go.Start();
         }
-
         public static void AddGameObjectToScene(GameObject go, Vector2 position, int rotation)
         {
             gameObjects.Add(go);
@@ -57,7 +58,21 @@ namespace RogueRafting
             go.Start();
         }
 
-        public abstract void Process(GameTime gameTime);
+        public static void Process(GameTime gameTime)
+        {
+            if (!started)
+            Init();
+
+            List<MonoBehavior> scripts = GameObject.GetAllScripts();
+            for (int s = 0; s < scripts.Count; s++)
+            {
+                if (scripts[s] != null)
+                {
+                    if (scripts[s].enabled)
+                        scripts[s].Update(gameTime);
+                }
+            }
+        }
 
         public abstract void LoadResources(ContentManager content);
 
@@ -74,11 +89,14 @@ namespace RogueRafting
                 Transform transform = go.GetComponent<Transform>();
                 if (renderer!=null && transform!=null)
                 {
-                    spriteBatch.Draw(renderer.sprite.currentImage, 
-                                     transform.position,
-                                     Color.White);
+                    if (renderer.visible)
+                    {
+                        spriteBatch.Draw(renderer.sprite.currentImage,
+                                         transform.position,
+                                         Color.White);
+                        renderer.Update(gameTime);
+                    }
 
-                    renderer.Update(gameTime);
                     Debug.WriteLine("Rendered Sprite From Object " + renderer.gameObject.name 
                         + " : ID : " + renderer.gameObject.GetInstanceID());
                 }

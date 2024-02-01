@@ -59,27 +59,12 @@ namespace RogueRafting.Scenes
             player3.GetComponent<SpriteRenderer>().sprite = playerSprite2;
             player3.GetComponent<SpriteRenderer>().animationSpeed = 2F;
             // player3.AddComponent<EnemyMovement>();
-            player3.SetParent(player);
+            //player3.SetParent(player);
 
             AddGameObjectToScene(player, new Vector2(100, 100), 0);
-            AddGameObjectToScene(player2, new Vector2(120, 100), 0);
+            AddGameObjectToScene(player2, new Vector2(100, 500), 0);
             AddGameObjectToScene(player3, new Vector2(160, 100), 0);
 
-        }
-
-        public override void Process(GameTime gameTime)
-        {
-
-                    foreach (MonoBehavior script in GameObject.GetScripts())
-                    {
-
-                        script.Update(gameTime);
-                        //script.GetType().InvokeMember("Update", System.Reflection.BindingFlags.InvokeMethod,
-                         //   null, script, null);
-
-                    }
-                
-            
         }
 
     }

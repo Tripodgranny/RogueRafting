@@ -21,9 +21,5 @@ namespace RogueRafting.Scenes
             throw new NotImplementedException();
         }
 
-        public override void Process(GameTime gameTime)
-        {
-            Debug.WriteLine("LevelEditorScene Running");
-        }
     }
 }

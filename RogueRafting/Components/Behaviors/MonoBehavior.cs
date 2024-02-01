@@ -13,44 +13,21 @@ namespace RogueRafting.Components.Behaviors
     {
         public override void Init()
         {
-            GameObject.AddScript(this);
-            base.Init();
+            if (enabled)
+            {
+                GameObject.AddScript(this);
+                base.Init();
+            }
         }
 
-        public override void Update(GameTime gameTime)
-        {
-
-        }
-
-        public virtual void Start()
-        {
-
-        }
-
-        public virtual void FixedUpdate()
-        {
-
-        }
-
-        public virtual void LateUpdate()
-        {
-
-        }
-
-        public virtual void OnGUI()
-        {
-
-        }
-
-        public virtual void OnDisable()
-        {
-
-        }
-
-        public virtual void OnEnable()
-        {
-
-        }
+        public override void Update(GameTime gameTime) { }
+        public virtual void Awake() { }
+        public virtual void Start() { }
+        public virtual void FixedUpdate() { }
+        public virtual void LateUpdate() { }
+        public virtual void OnGUI() { }
+        public virtual void OnDisable() { }
+        public virtual void OnEnable() { }
 
     }
 }

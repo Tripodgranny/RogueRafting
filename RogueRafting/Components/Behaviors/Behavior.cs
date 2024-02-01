@@ -10,7 +10,7 @@ namespace RogueRafting.Components.Behaviors
 {
     public class Behavior : Component
     {
-        protected bool enabled = true;
+        public bool enabled = true;
 
         public override void Update(GameTime gameTime)
         {

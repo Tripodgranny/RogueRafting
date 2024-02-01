@@ -12,12 +12,25 @@ namespace RogueRafting.Components.Behaviors
     public class PlayerMovement : MonoBehavior
     {
 
+        public override void Awake()
+        {
+            //enabled = false;
+            //gameObject.GetComponent<SpriteRenderer>().visible = false;
+            FindFirstObjectByType<EnemyMovement>(true).enabled = true;
+            Debug.WriteLine("Awake Called For: " + gameObject.name);
+            
+        }
+
         public override void Update(GameTime gameTime)
         {
             var delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
             gameObject.transform.Translate(delta * 20F, delta * 20F);
+            Debug.WriteLine("Player Movement");
 
-            Debug.WriteLine("PlayerMovement");
+            //Destroy(gameObject); // destroy this game object
+            //Destroy(this); // destroy this script
+            //if (gameObject.GetComponent<SpriteRenderer>() != null) // destroy the sprite renderer
+            //    Destroy(gameObject.GetComponent<SpriteRenderer>());
         }
     }
 }

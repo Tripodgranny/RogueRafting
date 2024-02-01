@@ -38,7 +38,7 @@ namespace RogueRafting
         {
             // TODO: Add your initialization logic here
 
-            base.Initialize();
+            base.Initialize(); // This method calls LoadContent();
 
             graphics.PreferredBackBufferHeight = height;
             graphics.PreferredBackBufferWidth = width;
@@ -88,7 +88,7 @@ namespace RogueRafting
             // UPDATE SCENE
             if (currentScene != null)
             {
-                currentScene.Process(gameTime);
+                Scene.Process(gameTime);
             }
         }
 
