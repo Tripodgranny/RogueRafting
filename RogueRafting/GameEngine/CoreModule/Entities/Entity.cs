@@ -6,8 +6,6 @@ using System.Diagnostics;
 
 namespace RogueRafting.GameEngine.CoreModule.Entities
 {
-
-    ///@author adf
     /// <summary>
     /// Entity is the top level class of all GameObjects, Components, ect...
     /// </summary>
