@@ -1,0 +1,5 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/Chris/Source/Repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/dust.png","C:/Users/Chris/Source/Repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/bin/DesktopGL/Content/dust.xnb","TextureProcessor","Texture2DContent",17963,12373,0.0728074
+"C:/Users/Chris/Source/Repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/test1.png","C:/Users/Chris/Source/Repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/bin/DesktopGL/Content/test1.xnb","TextureProcessor","Texture2DContent",17831,4181,0.001576
+"C:/Users/Chris/Source/Repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/test2.png","C:/Users/Chris/Source/Repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/bin/DesktopGL/Content/test2.xnb","TextureProcessor","Texture2DContent",17842,4181,0.0011276
+"C:/Users/Chris/Source/Repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/test3.png","C:/Users/Chris/Source/Repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/bin/DesktopGL/Content/test3.xnb","TextureProcessor","Texture2DContent",17835,4181,0.0012862

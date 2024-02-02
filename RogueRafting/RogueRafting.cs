@@ -1,12 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using RogueRafting.Components;
-using RogueRafting.Scenes;
+using RogueRafting.RogueRaftingContent.Scenes;
 using RogueRafting.Util;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace RogueRafting
 {
@@ -25,7 +22,10 @@ namespace RogueRafting
 
         private Texture2D testSprite;
 
-        public static Scene currentScene = null;
+        private List<Scene> scenes = new List<Scene> 
+        { 
+            
+        };
 
         public RogueRafting()
         {
@@ -48,16 +48,14 @@ namespace RogueRafting
             
             GameState.state = GameState.State.Running;
 
-            currentScene.BuildSceneFromResources();
-
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             renderTarget = new RenderTarget2D(GraphicsDevice, 1280, 1080);
-            Scene.ChangeScene(Scene.TEST_SCENE);
-            currentScene.LoadResources(Content);
+            Assets.Load(Content);
+            Scene.ChangeScene<TestScene>();
         }
 
         protected override void Update(GameTime gameTime)
@@ -86,17 +84,15 @@ namespace RogueRafting
                 //Input.log();
 
             // UPDATE SCENE
-            if (currentScene != null)
-            {
-                Scene.Process(gameTime);
-            }
+            Scene.Process(gameTime);
+
         }
 
         protected override void Draw(GameTime gameTime)
         {
             scale = viewScale / (width / graphics.GraphicsDevice.Viewport.Height);
             graphics.GraphicsDevice.SetRenderTarget(renderTarget);
-            graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
+            graphics.GraphicsDevice.Clear(Scene.GetScreenColor());
 
             spriteBatch.Begin();
             //spriteBatch.Draw(testSprite, Vector2.Zero, Color.White);

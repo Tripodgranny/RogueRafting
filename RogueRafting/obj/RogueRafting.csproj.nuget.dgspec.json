@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Dev\\MonoGame\\RogueRafting\\RogueRafting\\RogueRafting.csproj": {}
+    "C:\\Users\\Chris\\source\\repos\\RogueRafting\\RogueRafting\\RogueRafting.csproj": {}
   },
   "projects": {
-    "C:\\Dev\\MonoGame\\RogueRafting\\RogueRafting\\RogueRafting.csproj": {
+    "C:\\Users\\Chris\\source\\repos\\RogueRafting\\RogueRafting\\RogueRafting.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\MonoGame\\RogueRafting\\RogueRafting\\RogueRafting.csproj",
+        "projectUniqueName": "C:\\Users\\Chris\\source\\repos\\RogueRafting\\RogueRafting\\RogueRafting.csproj",
         "projectName": "RogueRafting",
-        "projectPath": "C:\\Dev\\MonoGame\\RogueRafting\\RogueRafting\\RogueRafting.csproj",
+        "projectPath": "C:\\Users\\Chris\\source\\repos\\RogueRafting\\RogueRafting\\RogueRafting.csproj",
         "packagesPath": "C:\\Users\\Chris\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\MonoGame\\RogueRafting\\RogueRafting\\obj\\",
+        "outputPath": "C:\\Users\\Chris\\source\\repos\\RogueRafting\\RogueRafting\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Chris\\AppData\\Roaming\\NuGet\\NuGet.Config",

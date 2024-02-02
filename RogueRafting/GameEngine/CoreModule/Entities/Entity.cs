@@ -1,10 +1,10 @@
-﻿using RogueRafting.Components;
-using RogueRafting.Components.Behaviors;
+﻿using RogueRafting.GameEngine.CoreModule.Entities.Components;
+using RogueRafting.GameEngine.CoreModule.Entities.Components.Behaviors;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace RogueRafting.Entities
+namespace RogueRafting.GameEngine.CoreModule.Entities
 {
 
     ///@author adf
@@ -16,17 +16,15 @@ namespace RogueRafting.Entities
         // TODO: Instantiate method
         //       Destroy method needs implementation to destroy components, and children
 
-        public String name = "";
+        public string name = "";
         private int instanceID = 0;
         private bool persistent = false;
         protected bool active = true;
 
-        private static List<Entity> entities = new List<Entity>();
-
         public Entity()
         {
             instanceID = GenerateID();
-            entities.Add(this);
+            Scene.entities.Add(this);
         }
 
         /// <summary>
@@ -46,11 +44,6 @@ namespace RogueRafting.Entities
         public int GetInstanceID() { return instanceID; }
 
         /// <summary>
-        /// Return a list of all entities
-        /// </summary>
-        public static List<Entity> GetEntities() { return entities; }
-
-        /// <summary>
         /// Find first entity of type T
         /// <example>
         /// <code>
@@ -59,11 +52,11 @@ namespace RogueRafting.Entities
         /// </code>
         /// </example>
         /// </summary>
-        public static T FindFirstObjectByType<T> (bool listInactiveObjects) where T : Entity
+        public static T FindFirstObjectByType<T>(bool listInactiveObjects) where T : Entity
         {
-            foreach (Entity entity in entities)
+            foreach (Entity entity in Scene.entities)
             {
-                bool isType = (entity.GetType() == typeof(T));
+                bool isType = entity.GetType() == typeof(T);
                 if (isType)
                 {
                     if (entity.active)
@@ -91,9 +84,9 @@ namespace RogueRafting.Entities
         public static List<T> FindAllObjectsByType<T>(bool listInactiveObjects) where T : Entity
         {
             List<T> entityList = new List<T>();
-            foreach (Entity entity in entities)
+            foreach (Entity entity in Scene.entities)
             {
-                bool isType = (entity.GetType() == typeof(T));
+                bool isType = entity.GetType() == typeof(T);
                 if (isType)
                 {
                     if (entity.active)              // Add to list if active
@@ -122,7 +115,7 @@ namespace RogueRafting.Entities
         /// Destroy(this);
         /// </code>
         /// </summary>
-        public static void Destroy(Entity entity) 
+        public static void Destroy(Entity entity)
         {
             Debug.WriteLine("Destroyed " + entity.name);
             var type = entity.GetType();
@@ -134,18 +127,33 @@ namespace RogueRafting.Entities
                 DestroyComponentsOfTypeOnGameObject(((Component)entity).gameObject, entity);
 
             Debug.WriteLine("Destroyed " + entity.name);
-                
-        }
 
+        }
 
         /// <summary>
         /// Destroy the game object including all of its components and children
         /// </summary>
-        private static void DestroyGameObject(GameObject go)
+        public static void DestroyGameObject(GameObject go)
         {
             DestroyAllComponentsOnGameObject(go);
-            entities.Remove(go);
+            Scene.entities.Remove(go);
             go = null;
+        }
+
+        /// <summary>
+        /// Destroy the game objects including all of its components and children 
+        /// </summary>
+        public static void DestroyGameObjects(List<GameObject> go)
+        {
+            if (go == null || go.Count <= 0)
+                return;
+            for (int i = 0; i < go.Count; i++)
+            {
+                if (go[i] == null) return;
+                DestroyAllComponentsOnGameObject(go[i]);
+                Scene.entities.Remove(go[i]);
+                go[i] = null;
+            }
         }
 
         /// <summary>
@@ -153,6 +161,9 @@ namespace RogueRafting.Entities
         /// </summary>
         private static void DestroyAllComponentsOnGameObject(GameObject go)
         {
+            if (go.GetComponentList() == null)
+                return; 
+
             List<Component> componentList = go.GetComponentList();
             if (go.GetComponentList().Count >= 0)
             {
@@ -162,7 +173,7 @@ namespace RogueRafting.Entities
                     if (typeof(MonoBehavior).IsAssignableFrom(type))
                         GameObject.RemoveScript((MonoBehavior)componentList[i]);
 
-                    entities.Remove(componentList[i]);
+                    Scene.entities.Remove(componentList[i]);
                     go.GetComponentList().Remove(componentList[i]);
                 }
             }
@@ -185,7 +196,7 @@ namespace RogueRafting.Entities
                     var type = componentList[i].GetType();
                     if (componentList[i].GetType().IsAssignableFrom(entity.GetType()))
                     {
-                        entities.Remove(componentList[i]);
+                        Scene.entities.Remove(componentList[i]);
                         go.GetComponentList().Remove(componentList[i]);
                     }
                 }
@@ -199,7 +210,7 @@ namespace RogueRafting.Entities
             if (componentList.Contains(script))
             {
                 GameObject.RemoveScript(script);
-                entities.Remove(script);
+                Scene.entities.Remove(script);
                 go.GetComponentList().Remove(script);
             }
         }

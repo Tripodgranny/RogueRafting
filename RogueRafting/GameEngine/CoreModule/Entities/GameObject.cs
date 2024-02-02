@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using RogueRafting.Components;
-using RogueRafting.Components.Behaviors;
+using RogueRafting.GameEngine.CoreModule.Entities.Components;
+using RogueRafting.GameEngine.CoreModule.Entities.Components.Behaviors;
 using RogueRafting.Util;
 using System;
 using System.Collections.Generic;
@@ -14,17 +14,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
-namespace RogueRafting.Entities
+namespace RogueRafting.GameEngine.CoreModule.Entities
 {
     // TODO: implement GetChild method, implement Layer Class and methods, implement Tags.
     public class GameObject : Entity
     {
-        private Tag tag = Tag.DEFAULT;
+        private Tag tag;
         private bool activeInHierarchy = true;
         private bool activeSelf = true;
         private List<Component> components = new List<Component>();
         private List<GameObject> children = new List<GameObject>();
-        private static List<MonoBehavior> monobehaviors = new List<MonoBehavior>();
         public Transform transform;
 
         private GameObject parent;
@@ -32,9 +31,10 @@ namespace RogueRafting.Entities
 
         // Layer - unimplemented
 
-        public GameObject ()
+        public GameObject()
         {
             transform = AddComponent<Transform>();
+            tag = Tag.DEFAULT;
         }
 
         public GameObject(Vector2 position, float rotation)
@@ -42,6 +42,8 @@ namespace RogueRafting.Entities
             transform = AddComponent<Transform>();
             transform.rotation = rotation;
             transform.position = position;
+            tag = Tag.DEFAULT;
+
         }
         //==========================================================================================
         // SCRIPT METHODS
@@ -49,16 +51,16 @@ namespace RogueRafting.Entities
 
         public static void AddScript(MonoBehavior behavior)
         {
-            monobehaviors.Add(behavior);
+            Scene.monobehaviors.Add(behavior);
         }
 
         public static void RemoveScript(MonoBehavior behavior)
         {
-            monobehaviors.Remove(behavior);
-            Debug.WriteLine("Monobehaviors: " + monobehaviors);
+            Scene.monobehaviors.Remove(behavior);
+            Debug.WriteLine("Monobehaviors: " + Scene.monobehaviors);
         }
 
-        public static List<MonoBehavior> GetAllScripts() { return monobehaviors; }
+        public static List<MonoBehavior> GetAllScripts() { return Scene.monobehaviors; }
 
         //==========================================================================================
         // GET/SET METHODS
@@ -72,7 +74,7 @@ namespace RogueRafting.Entities
             if (parent != null && !parent.activeSelf)
                 return;
 
-            this.active = act;
+            active = act;
             activeSelf = act;
         }
         public void SetActiveInHierarchy(bool act)
@@ -80,19 +82,19 @@ namespace RogueRafting.Entities
             if (parent != null && !parent.activeSelf)
                 return;
 
-            this.active = act;
+            active = act;
             activeInHierarchy = act;
             activeSelf = act;
         }
 
-        public static Scene GetScene(int instanceID) 
+        public static Scene GetScene(int instanceID)
         {
-            foreach (GameObject go in Entity.GetEntities())
+            foreach (GameObject go in Scene.entities)
             {
                 if (go.GetInstanceID() == instanceID)
                     return go.scene;
             }
-            return null; 
+            return null;
         }
 
         public GameObject GetParent() { return parent; }
@@ -108,10 +110,35 @@ namespace RogueRafting.Entities
             children.Add(go);
         }
 
+        /// <summary>
+        /// Remove a child object from this game object
+        /// </summary>
         public void RemoveChild(GameObject go)
         {
+            if (children == null)
+                return;
             if (children.Contains(go))
                 children.Remove(go);
+        }
+        //==========================================================================================
+        // FIND METHODS
+        //==========================================================================================
+        /// <summary>
+        /// Finds all game objects with the passed in tag name.
+        /// <returns>List GameObjects</returns> 
+        /// </summary>
+        public List<GameObject> FindGameObjectsWithTag(string tag)
+        {
+            if (Scene.gameObjects.Count <= 0)
+                return null;
+
+            List<GameObject> goWithTagList = new List<GameObject>();
+            for (int i = 0; i < Scene.gameObjects.Count; i++)
+            {   // Compare Tag of object in list to passed in tag.
+                if (Scene.gameObjects[i].CompareTag(tag))
+                    goWithTagList.Add(Scene.gameObjects[i]);
+            }
+            return goWithTagList;
         }
 
         //==========================================================================================
@@ -123,7 +150,7 @@ namespace RogueRafting.Entities
         /// </summary>
         public void Start()
         {
-            scene = RogueRafting.currentScene;
+            scene = Scene.currentScene;
             foreach (Component comp in components)
             {
                 comp.Init();
@@ -132,15 +159,16 @@ namespace RogueRafting.Entities
 
         /// <summary>
         /// Update all components attached to this game object
-        /// </summary>
-        public void Update(GameTime gameTime)
+        /// </summary>                                
+        public void Update(GameTime gameTime)                                                       // public void Update(GameTime gameTime) To be implemented?
         {
             foreach (Component comp in components)
             {
                 comp.Update(gameTime);
             }
 
-            foreach (GameObject o in Entity.GetEntities()) { 
+            foreach (GameObject o in Scene.entities)
+            {
                 if (o.children.Count > 0)
                 {
                     foreach (GameObject child in children)
@@ -161,7 +189,7 @@ namespace RogueRafting.Entities
         /// <summary>
         /// Gets all components of type attached to this game object
         /// </summary>
-        /// <returns>T</returns>
+        /// <returns>List T</returns>
         public List<T> GetComponents<T>() where T : Component
         {
             if (components.Count <= 0)
@@ -188,7 +216,7 @@ namespace RogueRafting.Entities
 
             foreach (Component c in components)
             {
-                if (c.GetType() == typeof(T)) 
+                if (c.GetType() == typeof(T))
                     return (T)c;
             }
             return null;
@@ -209,7 +237,7 @@ namespace RogueRafting.Entities
                     continue;
                 foreach (Component c in components)
                 {
-                    if (c.GetType() == typeof(T)) 
+                    if (c.GetType() == typeof(T))
                         return (T)c;
                 }
             }
@@ -227,11 +255,11 @@ namespace RogueRafting.Entities
                 return null;
 
             List<T> componentList = new List<T>();
-            foreach(GameObject go in children)
+            foreach (GameObject go in children)
             {
                 if (go.components.Count <= 0)
                     continue;
-                foreach(Component c in go.components)
+                foreach (Component c in go.components)
                 {
                     if (c.GetType() == typeof(T))
                         componentList.Add((T)c);
@@ -252,7 +280,7 @@ namespace RogueRafting.Entities
             foreach (Component c in parent.components)
             {
                 if (c.GetType() == typeof(T))
-                    return ((T)c);
+                    return (T)c;
             }
             return null;
         }
@@ -307,12 +335,12 @@ namespace RogueRafting.Entities
         /// Compares this game objects tag name to a string value
         /// </summary>
         /// <param name="(String name)"></param>
-        public bool CompareTag(String name)
+        public bool CompareTag(string name)
         {
-            return this.tag.name == name;
+            return tag.name == name;
         }
 
-        public void BroadcastMessage(String methodName, params object[] args)
+        public void BroadcastMessage(string methodName, params object[] args)
         {
             // broadcast to parent
             if (parent != null)
@@ -332,7 +360,7 @@ namespace RogueRafting.Entities
             if (children.Count <= 0)
                 return;
 
-            foreach(GameObject go in children)
+            foreach (GameObject go in children)
             {
                 foreach (Component c in go.components)
                 {

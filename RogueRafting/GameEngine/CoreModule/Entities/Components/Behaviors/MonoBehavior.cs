@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using RogueRafting.Entities;
+using RogueRafting.GameEngine.CoreModule.Entities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RogueRafting.Components.Behaviors
+namespace RogueRafting.GameEngine.CoreModule.Entities.Components.Behaviors
 {
     public class MonoBehavior : Behavior
     {

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace RogueRafting.Components
+namespace RogueRafting.GameEngine.CoreModule.Entities.Components
 {
     public class SpriteRenderer : Component
     {
@@ -23,7 +23,7 @@ namespace RogueRafting.Components
 
         }
 
-        public SpriteRenderer (Sprite sprite)
+        public SpriteRenderer(Sprite sprite)
         {
             this.sprite = sprite;
         }
@@ -33,7 +33,7 @@ namespace RogueRafting.Components
             Play(gameTime);
         }
 
-        private void Play (GameTime gameTime)
+        private void Play(GameTime gameTime)
         {
             if (animationSpeed <= 0)
                 return;
@@ -47,10 +47,11 @@ namespace RogueRafting.Components
 
         private void SwitchFrame()
         {
-            if (sprite.imageIndex >= sprite.imageCount-1)
+            if (sprite.imageIndex >= sprite.imageCount - 1)
             {
                 sprite.imageIndex = 0;
-            } else
+            }
+            else
             {
                 sprite.imageIndex++;
             }

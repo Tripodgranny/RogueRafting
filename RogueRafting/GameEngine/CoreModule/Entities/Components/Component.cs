@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using RogueRafting.Entities;
+using RogueRafting.GameEngine.CoreModule.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RogueRafting.Components
+namespace RogueRafting.GameEngine.CoreModule.Entities.Components
 {
     public abstract class Component : Entity
     {
@@ -15,7 +15,7 @@ namespace RogueRafting.Components
         /// </summary>
         public GameObject gameObject;
         public Transform transform;
-        
+
         /// <summary>
         /// Abstract method used for starting a component.
         /// </summary>

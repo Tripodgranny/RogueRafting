@@ -6,20 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RogueRafting.Components
+namespace RogueRafting.GameEngine.CoreModule.Entities.Components
 {
     public class Transform : Component
     {
         public Vector2 position;
         public float rotation;
 
-        public Transform ()
+        public Transform()
         {
-            position = new Vector2 (0, 0);
+            position = new Vector2(0, 0);
             rotation = 0;
         }
 
-        public Transform (Vector2 position, float rotation)
+        public Transform(Vector2 position, float rotation)
         {
             this.position = position;
             this.rotation = rotation;
@@ -33,7 +33,7 @@ namespace RogueRafting.Components
 
         public override void Update(GameTime gameTime)
         {
-            
+
         }
     }
 }

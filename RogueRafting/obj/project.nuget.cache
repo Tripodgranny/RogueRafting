@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XeHQG2fym9ax48dw2TivQ8Saxhj1ffifwHq1oSfx/ESbjxJBwyqfTaQtKQ3vx46PmzWtfnJjd3XpAQbOjgBtCQ==",
+  "dgSpecHash": "uCwmEDssPHkBPHDfLQ2OAtRgXGICulORc0FbgDq9ZDTFWrc/pbfRe2K1BbLSX5NwY7OsotpdZzmh0dPeU+e/5Q==",
   "success": true,
-  "projectFilePath": "C:\\Dev\\MonoGame\\RogueRafting\\RogueRafting\\RogueRafting.csproj",
+  "projectFilePath": "C:\\Users\\Chris\\source\\repos\\RogueRafting\\RogueRafting\\RogueRafting.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Chris\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
     "C:\\Users\\Chris\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
