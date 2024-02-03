@@ -36,5 +36,10 @@ namespace RogueRafting.Graphics
             this.origin = origin;
         }
 
+        public void SetImageIndex(int index)
+        {
+            currentImage = images[index];
+        }
+
     }
 }

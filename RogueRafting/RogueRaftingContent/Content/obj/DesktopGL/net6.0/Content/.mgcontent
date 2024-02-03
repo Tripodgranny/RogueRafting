@@ -4,12 +4,36 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Chris/Source/Repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/dust.png</File>
-    <File>C:/Users/Chris/Source/Repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/test1.png</File>
-    <File>C:/Users/Chris/Source/Repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/test2.png</File>
-    <File>C:/Users/Chris/Source/Repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/test3.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/dust.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/player_walk_down_1.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/player_walk_down_2.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/player_walk_down_3.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/player_walk_left_1.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/player_walk_left_2.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/player_walk_left_3.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/player_walk_right_1.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/player_walk_right_2.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/player_walk_right_3.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/player_walk_up_1.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/player_walk_up_2.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/player_walk_up_3.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/test1.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/test2.png</File>
+    <File>C:/Users/Chris/source/repos/RogueRafting/RogueRafting/RogueRaftingContent/Content/test3.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

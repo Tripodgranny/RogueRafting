@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using RogueRafting.RogueRaftingContent.Scenes;
 using RogueRafting.Util;
 using System;
@@ -17,10 +18,13 @@ namespace RogueRafting
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private Input inputManager;
-        //private Camera camera;
+        private Camera camera;
         private RenderTarget2D renderTarget;
+        SamplerState sampler = SamplerState.PointClamp; 
 
         private Texture2D testSprite;
+
+        Matrix transformMatrix;
 
         private List<Scene> scenes = new List<Scene> 
         { 
@@ -32,6 +36,10 @@ namespace RogueRafting
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            var scaleX = (float)height / (float)(height / 2);
+            var scaleY = (float)width / (float)(width / 2);
+            transformMatrix = Matrix.CreateScale(new Vector3(scaleX, scaleY, 1));
         }
 
         protected override void Initialize()
@@ -42,9 +50,10 @@ namespace RogueRafting
 
             graphics.PreferredBackBufferHeight = height;
             graphics.PreferredBackBufferWidth = width;
+            graphics.ToggleFullScreen();
             graphics.ApplyChanges();
 
-            //camera = new Camera(graphics.GraphicsDevice.Viewport);
+            camera = new Camera(graphics.GraphicsDevice.Viewport);
             
             GameState.state = GameState.State.Running;
 
@@ -53,9 +62,9 @@ namespace RogueRafting
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            renderTarget = new RenderTarget2D(GraphicsDevice, 1280, 1080);
+            renderTarget = new RenderTarget2D(GraphicsDevice, width, height);
             Assets.Load(Content);
-            Scene.ChangeScene<TestScene>();
+            Scene.ChangeScene<OtherScene>();
         }
 
         protected override void Update(GameTime gameTime)
@@ -64,14 +73,14 @@ namespace RogueRafting
             Input.getInput();
             //camera.UpdateCamera(graphics.GraphicsDevice.Viewport);
 
-            if (Input.A)
+            if (Input.A || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
             if (Input.B)
             {
                 GameState.state = GameState.State.Paused;
-                viewScale += 0.01F;
-                viewScale = Math.Clamp(viewScale, 1F, 2F);
+                //viewScale += 0.01F;
+                //viewScale = Math.Clamp(viewScale, 1F, 2F);
             } else
             {
                 GameState.state = GameState.State.Running;
@@ -90,11 +99,12 @@ namespace RogueRafting
 
         protected override void Draw(GameTime gameTime)
         {
-            scale = viewScale / (width / graphics.GraphicsDevice.Viewport.Height);
+            scale = viewScale / (graphics.GraphicsDevice.Viewport.Width / graphics.GraphicsDevice.Viewport.Height);
             graphics.GraphicsDevice.SetRenderTarget(renderTarget);
             graphics.GraphicsDevice.Clear(Scene.GetScreenColor());
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, transformMatrix);
+            //spriteBatch.Begin();
             //spriteBatch.Draw(testSprite, Vector2.Zero, Color.White);
             Scene.Render(gameTime, spriteBatch);
             spriteBatch.End();
@@ -102,7 +112,7 @@ namespace RogueRafting
             graphics.GraphicsDevice.SetRenderTarget(null);
            // GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, null, transformMatrix);
             spriteBatch.Draw(renderTarget, Vector2.Zero, null, Color.White, 0F, Vector2.Zero, scale, SpriteEffects.None, 0F);
             spriteBatch.End();
 

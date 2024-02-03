@@ -60,3 +60,15 @@ C:\Users\Chris\Source\Repos\RogueRafting\RogueRafting\obj\Debug\net6.0\refint\Ro
 C:\Users\Chris\Source\Repos\RogueRafting\RogueRafting\obj\Debug\net6.0\RogueRafting.pdb
 C:\Users\Chris\Source\Repos\RogueRafting\RogueRafting\obj\Debug\net6.0\RogueRafting.genruntimeconfig.cache
 C:\Users\Chris\Source\Repos\RogueRafting\RogueRafting\obj\Debug\net6.0\ref\RogueRafting.dll
+C:\Users\Chris\source\repos\RogueRafting\RogueRafting\bin\Debug\net6.0\Content\player_walk_down_1.xnb
+C:\Users\Chris\source\repos\RogueRafting\RogueRafting\bin\Debug\net6.0\Content\player_walk_down_2.xnb
+C:\Users\Chris\source\repos\RogueRafting\RogueRafting\bin\Debug\net6.0\Content\player_walk_down_3.xnb
+C:\Users\Chris\source\repos\RogueRafting\RogueRafting\bin\Debug\net6.0\Content\player_walk_left_1.xnb
+C:\Users\Chris\source\repos\RogueRafting\RogueRafting\bin\Debug\net6.0\Content\player_walk_left_2.xnb
+C:\Users\Chris\source\repos\RogueRafting\RogueRafting\bin\Debug\net6.0\Content\player_walk_left_3.xnb
+C:\Users\Chris\source\repos\RogueRafting\RogueRafting\bin\Debug\net6.0\Content\player_walk_right_1.xnb
+C:\Users\Chris\source\repos\RogueRafting\RogueRafting\bin\Debug\net6.0\Content\player_walk_right_2.xnb
+C:\Users\Chris\source\repos\RogueRafting\RogueRafting\bin\Debug\net6.0\Content\player_walk_right_3.xnb
+C:\Users\Chris\source\repos\RogueRafting\RogueRafting\bin\Debug\net6.0\Content\player_walk_up_1.xnb
+C:\Users\Chris\source\repos\RogueRafting\RogueRafting\bin\Debug\net6.0\Content\player_walk_up_2.xnb
+C:\Users\Chris\source\repos\RogueRafting\RogueRafting\bin\Debug\net6.0\Content\player_walk_up_3.xnb
